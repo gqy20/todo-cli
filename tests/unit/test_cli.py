@@ -44,9 +44,9 @@ class TestCLIAddCommand:
         mock_manager.add.assert_called_once_with("空格测试", priority="medium")
 
     @patch("todo.cli.TodoManager")
-    @patch("sys.argv", ["todo.py", "add", "紧急任务", "-p", "high"])
-    def test_add_with_priority_flag(self, mock_manager_class):
-        """测试：add -p high 应调用 manager.add(text, priority='high')"""
+    @patch("sys.argv", ["todo.py", "add", "紧急任务", "-l", "1"])
+    def test_add_with_high_priority_level(self, mock_manager_class):
+        """测试：add -l 1 应调用 manager.add(text, priority='high')"""
         # Arrange
         mock_manager = MagicMock()
         mock_manager_class.return_value = mock_manager
@@ -59,9 +59,9 @@ class TestCLIAddCommand:
         mock_manager.add.assert_called_once_with("紧急任务", priority="high")
 
     @patch("todo.cli.TodoManager")
-    @patch("sys.argv", ["todo.py", "add", "任务", "--priority", "low"])
-    def test_add_with_priority_long_flag(self, mock_manager_class):
-        """测试：add --priority low 应调用 manager.add(text, priority='low')"""
+    @patch("sys.argv", ["todo.py", "add", "任务", "-l", "3"])
+    def test_add_with_low_priority_level(self, mock_manager_class):
+        """测试：add -l 3 应调用 manager.add(text, priority='low')"""
         # Arrange
         mock_manager = MagicMock()
         mock_manager_class.return_value = mock_manager

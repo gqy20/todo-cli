@@ -25,19 +25,20 @@ def main():
     add_parser = subparsers.add_parser("add", help="添加新任务")
     add_parser.add_argument("text", help="任务文本")
     add_parser.add_argument(
-        "-p", "--priority",
-        choices=["low", "medium", "high"],
-        default="medium",
-        help="优先级 (low/medium/high，默认 medium)"
+        "-l", "--level",
+        type=int,
+        choices=[1, 2, 3],
+        default=2,
+        help="优先级: 1=高, 2=中, 3=低 (默认 2)"
     )
 
     # list 命令
     list_parser = subparsers.add_parser("list", help="列出所有任务")
     list_parser.add_argument(
-        "--sort-by",
-        choices=["id", "priority"],
-        default="id",
-        help="排序方式 (id/priority，默认 id)"
+        "-s", "--sort",
+        choices=["p", "i"],
+        default="i",
+        help="排序: p=优先级, i=ID (默认 i)"
     )
 
     # done 命令
@@ -63,7 +64,9 @@ def main():
         if args.command == "add":
             # CLI 层处理空格
             text = args.text.strip()
-            todo = manager.add(text, priority=args.priority)
+            # 数字转换为优先级字符串
+            priority_map = {1: "high", 2: "medium", 3: "low"}
+            todo = manager.add(text, priority=priority_map[args.level])
             emoji = todo.priority_emoji
             print(f"✓ 已添加任务 [{todo.id}] {emoji}: {todo.text}")
 
@@ -73,9 +76,9 @@ def main():
                 print("暂无任务")
             else:
                 # 按指定方式排序
-                if args.sort_by == "priority":
+                if args.sort == "p":
                     todos = sorted(todos, key=lambda t: (-t.priority_weight, t.id))
-                else:  # sort_by == "id"
+                else:  # sort == "i"
                     todos = sorted(todos, key=lambda t: t.id)
 
                 for todo in todos:
