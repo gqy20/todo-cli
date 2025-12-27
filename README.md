@@ -86,8 +86,8 @@ $ jd list -s p
 
 ```bash
 # 克隆仓库
-git clone https://github.com/gqy20/todo-cli.git
-cd todo-cli
+git clone https://github.com/gqy20/justdo.git
+cd justdo
 
 # 安装开发依赖
 pip install -e ".[dev]"
@@ -147,9 +147,9 @@ do-it/
 
 ## 链接
 
-- **GitHub**: https://github.com/gqy20/todo-cli
+- **GitHub**: https://github.com/gqy20/justdo
 - **PyPI**: https://pypi.org/project/justdo/
-- **文档**: http://home.gqy20.top/todo-cli/
+- **文档**: http://home.gqy20.top/justdo/
 
 ## License
 

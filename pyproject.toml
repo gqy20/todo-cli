@@ -40,10 +40,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/gqy20/todo-cli"
-Repository = "https://github.com/gqy20/todo-cli"
-Documentation = "http://home.gqy20.top/todo-cli/"
-"Issue Tracker" = "https://github.com/gqy20/todo-cli/issues"
+Homepage = "https://github.com/gqy20/justdo"
+Repository = "https://github.com/gqy20/justdo"
+Documentation = "http://home.gqy20.top/justdo/"
+"Issue Tracker" = "https://github.com/gqy20/justdo/issues"
 
 [project.scripts]
 jd = "todo.cli:main"
