@@ -14,6 +14,11 @@ def main():
         description="Todo CLI - 命令行待办事项工具",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version="%(prog)s 0.1.1"
+    )
     subparsers = parser.add_subparsers(dest="command", help="可用命令")
 
     # add 命令
