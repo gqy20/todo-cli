@@ -4,6 +4,7 @@
 """
 
 import json
+import os
 from pathlib import Path
 from typing import List, Optional
 from .models import TodoItem
@@ -12,12 +13,18 @@ from .models import TodoItem
 class TodoManager:
     """待办事项管理器"""
 
-    def __init__(self, filepath: str = "todo.json"):
+    def __init__(self, filepath: str | None = None):
         """初始化管理器
 
         Args:
-            filepath: 数据文件路径
+            filepath: 数据文件路径，默认 ~/.jd/todo.json
         """
+        if filepath is None:
+            # 使用用户主目录下的 .jd 目录
+            config_dir = Path.home() / ".jd"
+            config_dir.mkdir(exist_ok=True)
+            filepath = str(config_dir / "todo.json")
+
         self.filepath = Path(filepath)
         self.todos: List[TodoItem] = []
         self._next_id: int = 1
