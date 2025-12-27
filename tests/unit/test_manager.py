@@ -85,6 +85,44 @@ class TestTodoManagerAdd:
                 with pytest.raises(ValueError, match="文本不能为空"):
                     manager.add("")
 
+    def test_add_with_priority_high(self):
+        """测试：添加高优先级任务"""
+        # Arrange
+        with patch("pathlib.Path.exists", return_value=False):
+            with patch("pathlib.Path.open", mock_open()):
+                manager = TodoManager(filepath="todo.json")
+
+                # Act
+                manager.add("紧急任务", priority="high")
+
+                # Assert
+                assert manager.todos[0].priority == "high"
+                assert manager.todos[0].text == "紧急任务"
+
+    def test_add_with_priority_defaults_to_medium(self):
+        """测试：不指定优先级时应默认为 medium"""
+        # Arrange
+        with patch("pathlib.Path.exists", return_value=False):
+            with patch("pathlib.Path.open", mock_open()):
+                manager = TodoManager(filepath="todo.json")
+
+                # Act
+                manager.add("普通任务")
+
+                # Assert
+                assert manager.todos[0].priority == "medium"
+
+    def test_add_with_invalid_priority_raises_error(self):
+        """测试：添加无效优先级应抛出异常"""
+        # Arrange
+        with patch("pathlib.Path.exists", return_value=False):
+            with patch("pathlib.Path.open", mock_open()):
+                manager = TodoManager(filepath="todo.json")
+
+                # Act & Assert
+                with pytest.raises(ValueError, match="优先级必须是"):
+                    manager.add("任务", priority="urgent")
+
 
 class TestTodoManagerList:
     """测试列出任务功能"""
