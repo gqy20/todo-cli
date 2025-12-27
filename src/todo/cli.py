@@ -19,9 +19,21 @@ def main():
     # add 命令
     add_parser = subparsers.add_parser("add", help="添加新任务")
     add_parser.add_argument("text", help="任务文本")
+    add_parser.add_argument(
+        "-p", "--priority",
+        choices=["low", "medium", "high"],
+        default="medium",
+        help="优先级 (low/medium/high，默认 medium)"
+    )
 
     # list 命令
-    subparsers.add_parser("list", help="列出所有任务")
+    list_parser = subparsers.add_parser("list", help="列出所有任务")
+    list_parser.add_argument(
+        "--sort-by",
+        choices=["id", "priority"],
+        default="id",
+        help="排序方式 (id/priority，默认 id)"
+    )
 
     # done 命令
     done_parser = subparsers.add_parser("done", help="标记任务为完成")
@@ -46,17 +58,25 @@ def main():
         if args.command == "add":
             # CLI 层处理空格
             text = args.text.strip()
-            todo = manager.add(text)
-            print(f"✓ 已添加任务 [{todo.id}]: {todo.text}")
+            todo = manager.add(text, priority=args.priority)
+            emoji = todo.priority_emoji
+            print(f"✓ 已添加任务 [{todo.id}] {emoji}: {todo.text}")
 
         elif args.command == "list":
             todos = manager.list()
             if not todos:
                 print("暂无任务")
             else:
+                # 按指定方式排序
+                if args.sort_by == "priority":
+                    todos = sorted(todos, key=lambda t: (-t.priority_weight, t.id))
+                else:  # sort_by == "id"
+                    todos = sorted(todos, key=lambda t: t.id)
+
                 for todo in todos:
                     status = "✓" if todo.done else " "
-                    print(f"[{todo.id}] [{status}] {todo.text}")
+                    emoji = todo.priority_emoji
+                    print(f"[{todo.id}] [{status}] {emoji} {todo.text}")
 
         elif args.command == "done":
             manager.mark_done(args.id)

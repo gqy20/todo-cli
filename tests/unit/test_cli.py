@@ -25,7 +25,7 @@ class TestCLIAddCommand:
             main()
 
         # Assert
-        mock_manager.add.assert_called_once_with("学习 Python")
+        mock_manager.add.assert_called_once_with("学习 Python", priority="medium")
 
     @patch("todo.cli.TodoManager")
     @patch("sys.argv", ["todo.py", "add", "  空格测试  "])
@@ -41,7 +41,7 @@ class TestCLIAddCommand:
             main()
 
         # Assert
-        mock_manager.add.assert_called_once_with("空格测试")
+        mock_manager.add.assert_called_once_with("空格测试", priority="medium")
 
     @patch("todo.cli.TodoManager")
     @patch("sys.argv", ["todo.py", "add", "紧急任务", "-p", "high"])
