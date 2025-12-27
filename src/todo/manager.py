@@ -34,22 +34,28 @@ class TodoManager:
             if self.todos:
                 self._next_id = max(todo.id for todo in self.todos) + 1
 
-    def add(self, text: str) -> TodoItem:
+    def add(self, text: str, priority: str = "medium") -> TodoItem:
         """添加新任务
 
         Args:
             text: 任务文本
+            priority: 优先级 (low/medium/high)，默认 medium
 
         Returns:
             新创建的 TodoItem
 
         Raises:
-            ValueError: 文本为空时
+            ValueError: 文本为空或优先级无效时
         """
         if not text or not text.strip():
             raise ValueError("文本不能为空")
 
-        todo = TodoItem(id=self._next_id, text=text.strip(), done=False)
+        todo = TodoItem(
+            id=self._next_id,
+            text=text.strip(),
+            done=False,
+            priority=priority,
+        )
         self.todos.append(todo)
         self._next_id += 1
         self.save()
