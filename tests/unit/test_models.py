@@ -54,7 +54,7 @@ class TestTodoItemSerialization:
         result = todo.to_dict()
 
         # Assert
-        expected = {"id": 1, "text": "写代码", "done": False}
+        expected = {"id": 1, "text": "写代码", "done": False, "priority": "medium"}
         assert result == expected, f"to_dict 应返回 {expected}"
 
     def test_from_dict_creates_valid_todo_item(self):
