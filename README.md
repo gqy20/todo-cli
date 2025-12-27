@@ -1,15 +1,13 @@
-# Todo CLI - 命令行待办事项工具
+# do-it - Just do it! 🚀
 
 一个用 TDD 方式开发的简单命令行待办事项工具，支持任务优先级管理。
+
+> **Just do it!** - 简单、高效的待办事项管理工具
 
 ## 安装
 
 ```bash
-# 从源码安装（开发模式）
-pip install -e .
-
-# 或构建并安装
-pip install .
+pip install do-it
 ```
 
 ## 使用方法
@@ -18,33 +16,33 @@ pip install .
 
 ```bash
 # 添加任务（默认中等优先级）
-todo add "购买牛奶"
+doit add "购买牛奶"
 
 # 列出所有任务（按 ID 排序）
-todo list
+doit list
 
 # 标记任务为完成
-todo done 1
+doit done 1
 
 # 删除任务
-todo delete 1
+doit delete 1
 
 # 清空所有已完成的任务
-todo clear
+doit clear
 ```
 
 ### 优先级功能
 
 ```bash
 # 添加高优先级任务
-todo add "紧急任务" -p high
-todo add "紧急任务" --priority high
+doit add "紧急任务" -p high
+doit add "紧急任务" --priority high
 
 # 添加低优先级任务
-todo add "不重要的事" -p low
+doit add "不重要的事" -p low
 
 # 按优先级排序显示（高优先级在前）
-todo list --sort-by priority
+doit list --sort-by priority
 ```
 
 ### 优先级说明
@@ -58,13 +56,13 @@ todo list --sort-by priority
 ### 显示示例
 
 ```bash
-$ todo add "完成文档" -p high
+$ doit add "完成文档" -p high
 ✓ 已添加任务 [1] 🔴: 完成文档
 
-$ todo add "整理桌面" -p low
+$ doit add "整理桌面" -p low
 ✓ 已添加任务 [2] 🟢: 整理桌面
 
-$ todo list --sort-by priority
+$ doit list --sort-by priority
 [1] [ ] 🔴 高优先级任务
 [2] [ ] 🟡 中优先级任务
 [3] [ ] 🟢 低优先级任务
@@ -81,6 +79,10 @@ $ todo list --sort-by priority
 ## 开发
 
 ```bash
+# 克隆仓库
+git clone https://github.com/gqy20/todo-cli.git
+cd todo-cli
+
 # 安装开发依赖
 pip install -e ".[dev]"
 
@@ -94,7 +96,7 @@ pytest --cov=todo
 ## 项目结构
 
 ```
-todo-cli/
+do-it/
 ├── src/
 │   └── todo/
 │       ├── __init__.py
@@ -115,11 +117,11 @@ todo-cli/
 
 | 命令 | 说明 |
 |------|------|
-| `add <text> [-p PRIORITY]` | 添加新任务，可指定优先级 |
-| `list [--sort-by]` | 列出任务，支持按 ID 或优先级排序 |
-| `done <id>` | 标记指定 ID 的任务为完成 |
-| `delete <id>` | 删除指定 ID 的任务 |
-| `clear` | 清除所有已完成的任务 |
+| `doit add <text> [-p PRIORITY]` | 添加新任务，可指定优先级 |
+| `doit list [--sort-by]` | 列出任务，支持按 ID 或优先级排序 |
+| `doit done <id>` | 标记指定 ID 的任务为完成 |
+| `doit delete <id>` | 删除指定 ID 的任务 |
+| `doit clear` | 清除所有已完成的任务 |
 
 ## 测试
 
@@ -128,6 +130,19 @@ todo-cli/
 - 数据模型测试（15 个）- 包括优先级功能
 - 业务逻辑测试（17 个）- 包括优先级参数
 - CLI 命令测试（12 个）- 包括优先级显示和排序
+
+## 为什么叫 do-it？
+
+- ✅ **简洁有力** - 两个音节，朗朗上口
+- ✅ **寓意完美** - "Just do it!" 正是待办事项的核心精神
+- ✅ **易记易搜** - 用户搜索 "do it todo" 很容易找到
+- ✅ **国际化** - 英语通用，全球用户都能理解
+
+## 链接
+
+- **GitHub**: https://github.com/gqy20/todo-cli
+- **PyPI**: https://pypi.org/project/do-it/
+- **文档**: http://home.gqy20.top/todo-cli/
 
 ## License
 

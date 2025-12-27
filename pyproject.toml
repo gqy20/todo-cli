@@ -3,19 +3,20 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "todo-cli"
-version = "1.0.0"
-description = "一个简单的命令行待办事项工具"
+name = "do-it"
+version = "0.1.0"
+description = "Just do it! - 一个简单的命令行待办事项工具"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
-    {name = "TDD Developer"}
+    {name = "gqy20"}
 ]
-keywords = ["todo", "cli", "task", "productivity"]
+keywords = ["todo", "cli", "task", "productivity", "doit", "priority"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
@@ -24,6 +25,8 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Utilities",
+    "Topic :: Office/Business",
+    "Environment :: Console",
 ]
 
 [project.optional-dependencies]
@@ -31,8 +34,14 @@ dev = [
     "pytest>=7.0.0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/gqy20/todo-cli"
+Repository = "https://github.com/gqy20/todo-cli"
+Documentation = "http://home.gqy20.top/todo-cli/"
+"Issue Tracker" = "https://github.com/gqy20/todo-cli/issues"
+
 [project.scripts]
-todo = "todo.cli:main"
+doit = "todo.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
